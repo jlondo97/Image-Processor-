@@ -36,11 +36,11 @@ describe('ImageProcess SuitTest', () => {
       process: false,
     };
     component.setState(initialState);
-    const expectWidth = 796;
-    const expectHeigth = 456;
+    const expectWidth = 1123;
+    const expectHeigth = 644;
     component.instance().convertSize();
 
-    expect(component.state('width')).toEqual(expectWidth);
-    expect(component.state('height')).toEqual(expectHeigth);
+    expect(parseInt(component.state('width'), 10)).toEqual(expectWidth);
+    expect(parseInt(component.state('height'), 10)).toEqual(expectHeigth);
   });
 });
