@@ -3,6 +3,8 @@ import React from 'react';
 import DisplayImage from './DisplayImage';
 
 const DECIMAL_BASE = 10;
+const INITIAL_WIDTH = 796;
+const INITIAL_HEIGHT = 1123;
 
 class ImageProcess extends React.Component {
   constructor(props) {
@@ -14,6 +16,8 @@ class ImageProcess extends React.Component {
       width: null,
       imageprocess: null,
       process: false,
+      containerWidth: INITIAL_WIDTH,
+      containerHeigth: INITIAL_HEIGHT,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -22,7 +26,6 @@ class ImageProcess extends React.Component {
 
   handleClick() {
     this.setState((state) => ({
-      ...state,
       isToggleOn: !state.isToggleOn,
     }));
     this.convertSize();
@@ -35,20 +38,18 @@ class ImageProcess extends React.Component {
 
       img.onload = () => {
         const { height, width } = img;
-        this.setState((state) => ({
-          ...state,
+        this.setState({
           height,
           width,
           process: false,
-        }));
+        });
       };
 
       img.src = src;
 
-      this.setState((state) => ({
-        ...state,
+      this.setState({
         image: src,
-      }));
+      });
     }
   }
 
@@ -84,14 +85,34 @@ class ImageProcess extends React.Component {
   }
 
   convertSize() {
-    const maxWidth = 796;
-    const maxHeight = 1123;
-    const { image } = this.state;
-    let { width, height } = this.state;
-    let ratio = 0;
+    const { image, containerHeigth, containerWidth } = this.state;
     const imageprocess = new Image();
+    let { width, height } = this.state;
+    let maxHeight = containerHeigth;
+    let maxWidth = containerWidth;
+    let ratio = 0;
+
     imageprocess.src = image;
 
+    if (this.orientation === 'Horizontal') {
+      maxWidth = containerHeigth;
+      maxHeight = containerWidth;
+      this.setState({
+        containerHeigth: INITIAL_WIDTH,
+        containerWidth: INITIAL_HEIGHT,
+      });
+    }
+
+    if (this.orientation === 'Vertical') {
+      maxWidth = INITIAL_WIDTH;
+      maxHeight = INITIAL_HEIGHT;
+      this.setState({
+        containerHeigth: INITIAL_HEIGHT,
+        containerWidth: INITIAL_WIDTH,
+      });
+    }
+    // eslint-disable-next-line no-debugger
+    // debugger;
     if (width > maxWidth) {
       ratio = maxWidth / width;
       height *= ratio; // Reset height to match scaled image
@@ -105,39 +126,41 @@ class ImageProcess extends React.Component {
       height *= ratio; // Reset height to match scaled image
     }
 
-    this.setState((state) => ({
-      ...state,
-      width, // parseInt(width, DECIMAL_BASE),
-      height, // parseInt(height, DECIMAL_BASE),
+    this.setState({
+      width,
+      height,
       process: true,
       isToggleOn: true,
+      // containerHeigth: maxHeight,
+      // containerWidth: maxWidth,
       imageprocess: imageprocess.src,
-    }));
+    });
   }
 
   render() {
     return (
       <div className="container text-white">
-        Puedes agregar tu imagen Aqui sera ajustada sin perder su proporcion !!!
-
-        <div className="card-body" id="div1" style={{ backgroundColor: 'black' }}>
+        <div className="input-group">
+          <div className="custom-file">
+            <input type="file" className="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" onChange={this.onImageChange} />
+            <label className="custom-file-label" htmlFor="inputGroupFile04">Sube tu imagen</label>
+          </div>
+          <div className=" outline-secondary">
+            <button className="btn btn-light" onClick={this.handleClick} type="button" id="inputGroupFileAddon04">
+              {this.state.isToggleOn ? 'Procesar' : 'Procesando'}
+            </button>
+          </div>
+        </div>
+        <div className="card-body" id="div1">
           {this.imagesize}
           <DisplayImage
             image={this.imageprocess}
             width={this.state.width}
             height={this.state.height}
+            containerHeight={this.state.containerHeigth}
+            containerWidth={this.state.containerWidth}
           />
-          <div className="input-group">
-            <div className="custom-file">
-              <input type="file" className="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" onChange={this.onImageChange} />
-              <label className="custom-file-label" htmlFor="inputGroupFile04">Sube tu imagen</label>
-            </div>
-            <div className=" outline-secondary">
-              <button className="btn btn-outline-secondary" onClick={this.handleClick} type="button" id="inputGroupFileAddon04">
-                {this.state.isToggleOn ? 'Procesar' : 'Procesando'}
-              </button>
-            </div>
-          </div>
+
         </div>
 
       </div>

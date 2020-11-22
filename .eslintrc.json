@@ -21,7 +21,8 @@
     ],
     "rules": {
 
-        "react/destructuring-assignment": "off"
+        "react/destructuring-assignment": "off",
+        "linebreak-style": 0
 
     }
 }
