@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DisplayImage SuitTest render DisplayImage 1`] = `
+<div>
+  <div
+    className="card mb-3"
+    id="HojaCarta"
+    style={
+      Object {
+        "height": 1123,
+        "margin": 0,
+        "padding": 0,
+        "width": 796,
+      }
+    }
+  >
+    <img
+      alt=""
+      className="rounded"
+      src="https://cumbrepuebloscop20.org/wp-content/uploads/2018/09/Oso-Pardo-1.jpg"
+      style={
+        Object {
+          "height": 654,
+          "width": 1140,
+        }
+      }
+    />
+  </div>
+</div>
+`;
