@@ -151,6 +151,7 @@ class ImageProcess extends React.Component {
             </button>
           </div>
         </div>
+        Hola mundo estoy desplegado
         <div className="card-body" id="div1">
           {this.imagesize}
           <DisplayImage
