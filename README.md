@@ -37,7 +37,7 @@ Para correr el proyecto completo en local usaremos el siguiente comando para ini
 npm run start
 ````
 ## Construido con:
-javascript , react ,HTML5,bootstrap 
+Javascript , React ,HTML5,Bootstrap 
 
 #### Autor :
 Jhoany Londoño toro
