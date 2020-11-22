@@ -95,8 +95,8 @@ class ImageProcess extends React.Component {
     imageprocess.src = image;
 
     if (this.orientation === 'Horizontal') {
-      maxWidth = containerHeigth;
-      maxHeight = containerWidth;
+      maxWidth = 1123;
+      maxHeight = 796;
       this.setState({
         containerHeigth: INITIAL_WIDTH,
         containerWidth: INITIAL_HEIGHT,
