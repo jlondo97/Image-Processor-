@@ -32,4 +32,4 @@ jobs:
         app-name: 'app-tt-image-processor'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_17593416b2b04565a4fe0b1f9c8b6a53 }}
-        package: /build
+        package: .
