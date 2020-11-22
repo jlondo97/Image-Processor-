@@ -140,8 +140,11 @@ class ImageProcess extends React.Component {
   render() {
     return (
       <div className="container text-white">
+        Añade tu imagen y podras ver los tamaños de tu nueva imagen
+        Procesanda para una hoja carta A4(796x1123)
         <div className="input-group">
           <div className="custom-file">
+
             <input type="file" className="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" onChange={this.onImageChange} />
             <label className="custom-file-label" htmlFor="inputGroupFile04">Sube tu imagen</label>
           </div>
@@ -151,7 +154,6 @@ class ImageProcess extends React.Component {
             </button>
           </div>
         </div>
-        Hola mundo estoy desplegado
         <div className="card-body" id="div1">
           {this.imagesize}
           <DisplayImage
